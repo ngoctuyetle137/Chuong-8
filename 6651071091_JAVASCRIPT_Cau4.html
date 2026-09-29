@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cau 4</title>
+</head>
+<body>
+
+    <h2>Danh sách các số lẻ nhỏ hơn 100 (trừ 5, 7, 93)</h2>
+    <p id="ketqua" style="line-height: 1.6; font-size: 16px;"></p>
+
+    <script>
+        let danhSachSo = [];
+
+        for (let i = 1; i < 100; i += 2) {
+            if (i === 5 || i === 7 || i === 93) {
+                continue;
+            }
+            danhSachSo.push(i);
+        }
+        let ketQuaChuoi = danhSachSo.join(", ");
+
+        document.getElementById("ketqua").innerHTML = ketQuaChuoi;
+
+        console.log("Danh sách các số lẻ:", danhSachSo);
+    </script>
+
+</body>
+</html>

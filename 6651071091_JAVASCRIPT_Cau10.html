@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 10:Tính tổng chuỗi chia nguyên</title>
+</head>
+<body>
+
+    <script>
+        let input = prompt("Nhập số nguyên dương n:");
+
+        if (input === null) {
+            alert("Bạn đã hủy thao tác.");
+        } else {
+            let n = parseInt(input.trim());
+            if (isNaN(n) || n <= 0) {
+                alert("Dữ liệu không hợp lệ! Vui lòng nhập số nguyên dương.");
+            } else {
+                let sum = 0;
+                let current = n;
+                let steps = []; // Mảng lưu các số hạng để hiển thị chi tiết phép tính
+
+                while (current > 0) {
+                    sum += current;
+                    steps.push(current);
+                    current = Math.floor(current / 2); // Chia nguyên cho 2
+                }
+                let message = `Các số hạng: ${steps.join(" + ")}\nTổng là: ${sum}`;
+                alert(message);
+            }
+        }
+    </script>
+
+</body>
+</html>

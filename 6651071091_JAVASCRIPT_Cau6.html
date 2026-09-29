@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 6 : Giải phương trình bậc 2</title>
+</head>
+<body>
+
+    <script>
+        let inputA = prompt("Nhập hệ số a:");
+        let inputB = prompt("Nhập hệ số b:");
+        let inputC = prompt("Nhập hệ số c:");
+        if (inputA === null || inputB === null || inputC === null) {
+            alert("Bạn đã hủy thao tác nhập dữ liệu.");
+        } else {
+            let a = parseFloat(inputA);
+            let b = parseFloat(inputB);
+            let c = parseFloat(inputC);
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                alert("Dữ liệu nhập vào không hợp lệ! Vui lòng nhập số.");
+            } else {
+                let ketQua = "";
+
+                if (a === 0) {
+                    if (b === 0) {
+                        if (c === 0) {
+                            ketQua = "Phương trình vô số nghiệm.";
+                        } else {
+                            ketQua = "Phương trình vô nghiệm.";
+                        }
+                    } else {
+                        let x = -c / b;
+                        ketQua = `Vì a = 0 nên phương trình là bậc nhất:\nx = ${x}`;
+                    }
+                } else {
+                    let delta = b * b - 4 * a * c;
+
+                    if (delta < 0) {
+                        ketQua = `Delta = ${delta} < 0\nPhương trình vô nghiệm thực.`;
+                    } else if (delta === 0) {
+                        let x = -b / (2 * a);
+                        ketQua = `Delta = 0\nPhương trình có nghiệm kép:\nx1 = x2 = ${x}`;
+                    } else {
+                        let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                        let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                        ketQua = `Delta = ${delta} > 0\nPhương trình có 2 nghiệm phân biệt:\nx1 = ${x1}\nx2 = ${x2}`;
+                    }
+                }
+                alert(ketQua);
+            }
+        }
+    </script>
+
+</body>
+</html>

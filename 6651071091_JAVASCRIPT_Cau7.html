@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 8:Chương trình tìm ngày kế tiếp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        .box-result {
+            margin-top: 20px;
+            padding: 15px 20px;
+            background-color: #f0f7ff;
+            border-left: 5px solid #007bff;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .date-text {
+            font-size: 18px;
+            color: #333;
+        }
+        .highlight {
+            font-size: 22px;
+            font-weight: bold;
+            color: #d63031;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Chương trình tìm ngày kế tiếp</h2>
+
+    <!-- Vị trí hiển thị kết quả trực tiếp lên màn hình -->
+    <div id="manHinhKetQua" class="box-result">
+        Đang chờ nhập dữ liệu...
+    </div>
+
+    <script>
+        let strNgay = prompt("Nhập ngày:");
+        let strThang = prompt("Nhập tháng:");
+        let strNam = prompt("Nhập năm:");
+
+        let d = parseInt(strNgay);
+        let m = parseInt(strThang);
+        let y = parseInt(strNam);
+        function isLeapYear(year) {
+            return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        }
+        function getDaysInMonth(month, year) {
+            switch (month) {
+                case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                    return 31;
+                case 4: case 6: case 9: case 11:
+                    return 30;
+                case 2:
+                    return isLeapYear(year) ? 29 : 28;
+                default:
+                    return 0;
+            }
+        }
+
+        const divKetQua = document.getElementById("manHinhKetQua");
+        if (isNaN(d) || isNaN(m) || isNaN(y) || y <= 0 || m < 1 || m > 12 || d < 1 || d > getDaysInMonth(m, y)) {
+            let errorMsg = "⚠️ Ngày, tháng, năm nhập vào không hợp lệ!";
+            divKetQua.innerHTML = `<span style="color: red; font-weight: bold;">${errorMsg}</span>`;
+            console.error(errorMsg);
+        } else {
+            let nextD = d + 1;
+            let nextM = m;
+            let nextY = y;
+            if (nextD > getDaysInMonth(m, y)) {
+                nextD = 1;
+                nextM++;
+                if (nextM > 12) {
+                    nextM = 1;
+                    nextY++;
+                }
+            }
+            let curStr = `${d < 10 ? '0' + d : d}/${m < 10 ? '0' + m : m}/${y}`;
+            let nextStr = `${nextD < 10 ? '0' + nextD : nextD}/${nextM < 10 ? '0' + nextM : nextM}/${nextY}`;
+
+            divKetQua.innerHTML = `
+                <div class="date-text">Ngày bạn vừa nhập: <b>${curStr}</b></div>
+                <div class="date-text" style="margin-top: 10px;">
+                    👉 Ngày kế tiếp là: <span class="highlight">${nextStr}</span>
+                </div>
+            `;
+
+            console.log(`Ngày vừa nhập: ${curStr}`);
+            console.log(`Ngày kế tiếp là: ${nextStr}`);
+        }
+    </script>
+
+</body>
+</html>

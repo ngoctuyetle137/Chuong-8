@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 12: Tính lũy thừa b mũ n</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        .input-group {
+            margin-bottom: 12px;
+        }
+        input {
+            padding: 8px 12px;
+            font-size: 16px;
+            width: 150px;
+        }
+        button {
+            padding: 8px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result-box {
+            margin-top: 20px;
+            font-size: 18px;
+            padding: 12px 16px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #28a745;
+            display: inline-block;
+        }
+        .highlight {
+            color: #d63031;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Chương trình tính lũy thừa b<sup>n</sup></h2>
+
+    <div class="input-group">
+        <label for="baseB">Cơ số (b): </label>
+        <input type="number" id="baseB" value="2" min="1">
+    </div>
+
+    <div class="input-group">
+        <label for="expN">Số mũ (n): </label>
+        <input type="number" id="expN" value="5" min="1">
+    </div>
+
+    <button onclick="xuLyTinhToan()">Tính toán</button>
+    <br>
+    <div class="result-box">
+        Kết quả: <span id="ketqua" class="highlight">Đang chờ tính...</span>
+    </div>
+
+    <script>
+        function tinhLuyThua(b, n) {
+            let res = 1;
+            for (let i = 0; i < n; i++) {
+                res *= b;
+            }
+            return res;
+        }
+
+        function xuLyTinhToan() {
+            let b = parseInt(document.getElementById("baseB").value);
+            let n = parseInt(document.getElementById("expN").value);
+
+            if (isNaN(b) || isNaN(n) || b <= 0 || n <= 0) {
+                document.getElementById("ketqua").innerHTML = "<span style='color: red;'>Vui lòng nhập b và n là các số nguyên dương (> 0)!</span>";
+                return;
+            }
+            let ketQua = tinhLuyThua(b, n);
+
+            document.getElementById("ketqua").innerHTML = `${b}<sup>${n}</sup> = <b>${ketQua}</b>`;
+
+            console.log(`Giá trị của ${b}^${n} là:`, ketQua);
+        }
+        xuLyTinhToan();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 22: Xử lý sự kiện với form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        .form-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 320px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .form-group label {
+            font-size: 14px;
+        }
+
+        .form-group input[type="number"] {
+            width: 180px;
+            padding: 4px 6px;
+        }
+
+        .btn-group {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-group input[type="button"] {
+            padding: 4px 12px;
+            cursor: pointer;
+        }
+
+        .result-section {
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        #result {
+            margin-top: 4px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <!-- Ô nhập số thứ nhất -->
+        <div class="form-group">
+            <label for="num1">1st Number :</label>
+            <input type="number" id="num1" value="12">
+        </div>
+
+        <div class="form-group">
+            <label for="num2">2nd Number:</label>
+            <input type="number" id="num2" value="10">
+        </div>
+        <div class="btn-group">
+            <input type="button" value="Multiply" onclick="multiply()">
+            <input type="button" value="Divide" onclick="divide()">
+        </div>
+        <div class="result-section">
+            The Result Is :
+            <div id="result">120</div>
+        </div>
+    </div>
+
+    <script>
+        function multiply() {
+            let n1 = parseFloat(document.getElementById("num1").value);
+            let n2 = parseFloat(document.getElementById("num2").value);
+
+            if (isNaN(n1) || isNaN(n2)) {
+                document.getElementById("result").innerHTML = "Vui lòng nhập đủ 2 số!";
+                return;
+            }
+
+            let res = n1 * n2;
+            document.getElementById("result").innerHTML = res;
+        }
+        function divide() {
+            let n1 = parseFloat(document.getElementById("num1").value);
+            let n2 = parseFloat(document.getElementById("num2").value);
+
+            if (isNaN(n1) || isNaN(n2)) {
+                document.getElementById("result").innerHTML = "Vui lòng nhập đủ 2 số!";
+                return;
+            }
+
+            if (n2 === 0) {
+                document.getElementById("result").innerHTML = "Không thể chia cho 0!";
+            } else {
+                let res = n1 / n2;
+                document.getElementById("result").innerHTML = res;
+            }
+        }
+    </script>
+
+</body>
+</html>

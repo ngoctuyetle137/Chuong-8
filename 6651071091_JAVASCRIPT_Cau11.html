@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai 11:Đảo ngược số nguyên</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        input, button {
+            padding: 8px 12px;
+            font-size: 16px;
+        }
+        .result-box {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .highlight {
+            color: #d63031;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Chương trình đảo ngược một số nguyên</h2>
+
+    <label for="numInput">Nhập số nguyên: </label>
+    <input type="number" id="numInput" value="654321">
+    <button onclick="xuLyDaoNguoc()">Đảo ngược</button>
+
+    <div class="result-box">
+        Kết quả: <span id="ketqua" class="highlight"></span>
+    </div>
+
+    <script>
+
+        function reverseInteger(n) {            let sign = n < 0 ? -1 : 1;
+            let reversedStr = Math.abs(n).toString().split('').reverse().join('');
+            return parseInt(reversedStr) * sign;
+        }
+
+        function xuLyDaoNguoc() {
+            let inputVal = document.getElementById("numInput").value;
+
+            if (inputVal.trim() === "") {
+                document.getElementById("ketqua").textContent = "Vui lòng nhập một số nguyên!";
+                return;
+            }
+
+            let number = parseInt(inputVal);
+
+            let result = reverseInteger(number);
+
+            document.getElementById("ketqua").textContent = `${number} => ${result}`;
+
+            console.log(`Số ban đầu: ${number} => Số sau khi đảo ngược: ${result}`);
+        }
+        xuLyDaoNguoc();
+    </script>
+
+</body>
+</html>

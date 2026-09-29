@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập 1 - Tính diện tích tam giác</title>
+</head>
+<body>
+    <h2>Kết quả tính diện tích tam giác</h2>
+    <p id="ketqua"></p>
+
+    <script>
+        let a = 5;
+        let b = 6;
+        let c = 7;
+        let p = (a + b + c) / 2;
+        let dienTich = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+        console.log(dienTich);
+        window.alert("Diện tích tam giác là: " + dienTich);
+        document.getElementById("ketqua").innerHTML = "Diện tích của hình tam giác là: " + dienTich;
+    </script>
+</body>
+</html>

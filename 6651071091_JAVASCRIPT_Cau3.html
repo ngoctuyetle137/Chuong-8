@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang ="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>Bai Tap Cau 3</title>
+    </head>
+    <body>
+
+    <h2>Kết quả tìm số lớn nhất</h2>
+    <p id="ketqua"></p>
+
+    <script>
+        // 1. Khai báo 3 số đã cho
+        let a = 15;
+        let b = 28;
+        let c = 9;
+        let maxNumber = Math.max(a, b, c);
+
+        let thongBao = `Trong ba số (${a}, ${b}, ${c}), số lớn nhất là: ${maxNumber}`;
+
+
+        document.getElementById("ketqua").innerHTML = "<strong>" + thongBao + "</strong>";
+
+        console.log(thongBao);
+    </script>
+
+</body>
+</html>

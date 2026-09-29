@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 23: Tính tiền lương</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        table {
+            border: 3px solid #1a237e;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        td {
+            border: 2px solid #b71c1c; /* Viền ô màu nâu đỏ */
+            padding: 4px 8px;
+        }
+        .title-cell {
+            background-color: #ffe0b2; /* Màu nền cam nhạt */
+            color: #b71c1c;             /* Chữ màu nâu đỏ */
+            font-weight: bold;
+            width: 140px;
+        }
+
+
+        input[type="number"], 
+        input[type="text"] {
+            border: 1px solid #7f8c8d;
+            padding: 3px 6px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        #luong {
+            width: 150px;
+        }
+
+        #heSoLuong {
+            width: 60px;
+        }
+
+        #luongThang {
+            width: 150px;
+            background-color: #fff;
+        }
+
+        /* Nút Tính lương tháng bo tròn như hình */
+        .btn-calc {
+            background: linear-gradient(to bottom, #ffffff, #cfd8dc);
+            border: 1.5px solid #607d8b;
+            border-radius: 15px;
+            padding: 3px 18px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #1a237e;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .btn-calc:hover {
+            background: #eceff1;
+        }
+    </style>
+</head>
+<body>
+
+    <form name="frmLuong">
+        <table>
+            <tr>
+                <td class="title-cell">Lương</td>
+                <td>
+                    <input type="number" id="luong" value="1000000">
+                </td>
+            </tr>
+            <tr>
+                <td class="title-cell">Hệ số lương</td>
+                <td>
+                    <input type="number" id="heSoLuong" step="0.1" value="3.2">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center; padding: 6px;">
+                    <input type="button" class="btn-calc" value="Tính lương tháng" onclick="tinhLuong()">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title-cell">Lương tháng</td>
+                <td>
+                    <input type="text" id="luongThang" value="3200000" readonly>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function tinhLuong() {
+
+            let luong = parseFloat(document.getElementById("luong").value);
+            let heSo = parseFloat(document.getElementById("heSoLuong").value);
+
+            if (isNaN(luong) || isNaN(heSo)) {
+                alert("Vui lòng nhập đầy đủ và chính xác Lương và Hệ số lương!");
+                return;
+            }
+
+            if (luong < 0 || heSo < 0) {
+                alert("Lương và hệ số lương phải là các số không âm!");
+                return;
+            }
+            let tongLuong = luong * heSo;
+
+            document.getElementById("luongThang").value = Math.round(tongLuong);
+        }
+    </script>
+
+</body>
+</html>

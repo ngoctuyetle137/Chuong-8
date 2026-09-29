@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 8: Đọc số có 2 chữ số</title>
+</head>
+<body>
+
+    <script>
+
+        let input = prompt("Nhập vào một số nguyên có 2 chữ số (10 - 99):");
+        if (input === null) {
+            alert("Bạn đã hủy thao tác.");
+        } else {
+            let n = parseInt(input.trim());
+
+            if (isNaN(n) || n < 10 || n > 99) {
+                alert("Dữ liệu không hợp lệ! Vui lòng chỉ nhập số nguyên từ 10 đến 99.");
+            } else {
+                let chuc = Math.floor(n / 10);
+                let donVi = n % 10;
+
+                let chuSo = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+                let docChuc = "";
+                let docDonVi = "";
+
+                if (chuc === 1) {
+                    docChuc = "mười";
+                } else {
+                    docChuc = chuSo[chuc] + " mươi";
+                }
+                if (donVi === 0) {
+                    docDonVi = ""; // Ví dụ: 10 -> mười, 20 -> hai mươi
+                } else if (donVi === 1) {
+                    if (chuc > 1) {
+                        docDonVi = "mốt"; // Ví dụ: 21 -> hai mươi mốt
+                    } else {
+                        docDonVi = "một"; // Ví dụ: 11 -> mười một
+                    }
+                } else if (donVi === 4) {
+                    if (chuc > 1) {
+                        docDonVi = "tư"; // Ví dụ: 24 -> hai mươi tư (hoặc bốn)
+                    } else {
+                        docDonVi = "bốn"; // Ví dụ: 14 -> mười bốn
+                    }
+                } else if (donVi === 5) {
+                    docDonVi = "lăm"; // Ví dụ: 15 -> mười lăm, 25 -> hai mươi lăm
+                } else {
+                    docDonVi = chuSo[donVi]; // Các số còn lại: hai, ba, sáu, bảy, tám, chín
+                }
+
+                let ketQua = (docDonVi === "") ? docChuc : `${docChuc} ${docDonVi}`;
+                ketQua = ketQua.charAt(0).toUpperCase() + ketQua.slice(1);
+                alert(`Số ${n} đọc là: ${ketQua}`);
+            }
+        }
+    </script>
+
+</body>
+</html>

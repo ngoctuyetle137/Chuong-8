@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 24: Xuất thứ trong tuần</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        table {
+            border: 2px solid #1a237e;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        td {
+            border: 1px solid #1a237e;
+            padding: 5px 8px;
+            font-size: 15px;
+        }
+        .label-cell {
+            background-color: #ffe0b2;
+            color: #b71c1c;
+            font-weight: bold;
+        }
+
+        input[type="number"], 
+        input[type="text"] {
+            padding: 3px 6px;
+            font-size: 14px;
+        }
+
+        #ngay {
+            width: 50px;
+        }
+
+        #thang {
+            width: 50px;
+        }
+
+        #nam {
+            width: 70px;
+        }
+        .btn-submit {
+            background: linear-gradient(to bottom, #ffffff, #cfd8dc);
+            border: 1.5px solid #607d8b;
+            border-radius: 15px;
+            padding: 2px 14px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #1a237e;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #eceff1;
+        }
+
+        .result-cell {
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            color: #000;
+            padding: 8px;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+
+    <form name="frmThu">
+        <table>
+            <tr>
+                <td class="label-cell">Ngày</td>
+                <td>
+                    <input type="number" id="ngay" value="12" min="1" max="31">
+                </td>
+                <td class="label-cell">Tháng Select:</td>
+                <td>
+                    <input type="number" id="thang" value="1" min="1" max="12">
+                </td>
+                <td class="label-cell">năm</td>
+                <td>
+                    <input type="number" id="nam" value="2015">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6" style="text-align: center; padding: 6px;">
+                    <input type="button" class="btn-submit" value="Xuất thứ" onclick="xuatThu()">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" class="result-cell" id="ketQua">
+                    Thứ 2 Ngày 12 tháng 1 năm 2015
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function xuatThu() {
+            let d = parseInt(document.getElementById("ngay").value);
+            let m = parseInt(document.getElementById("thang").value);
+            let y = parseInt(document.getElementById("nam").value);
+
+            if (isNaN(d) || isNaN(m) || isNaN(y) || d < 1 || d > 31 || m < 1 || m > 12 || y <= 0) {
+                alert("Vui lòng nhập ngày, tháng, năm hợp lệ!");
+                return;
+            }
+            let dateObj = new Date(y, m - 1, d);
+            if (dateObj.getFullYear() !== y || dateObj.getMonth() !== (m - 1) || dateObj.getDate() !== d) {
+                alert("Ngày tháng năm không tồn tại trên thực tế!");
+                return;
+            }
+            let dayIndex = dateObj.getDay();
+            let arrThu = [
+                "Chủ nhật", 
+                "Thứ 2", 
+                "Thứ 3", 
+                "Thứ 4", 
+                "Thứ 5", 
+                "Thứ 6", 
+                "Thứ 7"
+            ];
+
+            let tenThu = arrThu[dayIndex];
+            let strKetQua = `${tenThu} Ngày ${d} tháng ${m} năm ${y}`;
+            document.getElementById("ketQua").innerText = strKetQua;
+        }
+    </script>
+
+</body>
+</html>
